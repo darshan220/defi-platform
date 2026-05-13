@@ -7,9 +7,14 @@ import { Sidebar } from "@/components/shared/Sidebar";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Nexus | Premium Trading Platform",
+  title: "Equivo | Premium Trading Platform",
   description:
     "Next-generation fintech trading platform designed for modern investors.",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -19,19 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} font-sans antialiased bg-[#080B0F] text-white flex h-screen overflow-hidden selection:bg-teal-500/30 selection:text-teal-200`}
-      >
+      <body className={`${inter.variable} font-sans antialiased bg-background text-foreground flex h-screen overflow-hidden`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
-          disableTransitionOnChange
+          disableTransitionOnChange={false}
         >
           <Sidebar />
           <main className="flex-1 overflow-y-auto">{children}</main>
         </ThemeProvider>
       </body>
+
     </html>
   );
 }

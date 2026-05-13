@@ -1,5 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MessageCircle, X } from "lucide-react";
+import EquivoLogo from "@/components/logos/EquivoLogo";
+
 
 export function Footer() {
   return (
@@ -8,12 +11,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">
-                  N
-                </span>
-              </div>
-              <span className="font-bold text-xl tracking-tight">Nexus</span>
+              <EquivoLogo size={32} />
+              <span className="font-bold text-xl tracking-tight">Equivo</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-sm mb-6">
               Next-generation fintech trading platform designed for modern
@@ -101,11 +100,11 @@ export function Footer() {
             Disclaimer: Trading tokenized pre-IPO assets involves significant
             risk and may not be suitable for all investors. The value of
             investments can go down as well as up. Past performance is not
-            indicative of future results. Nexus is not a registered
+            indicative of future results. Equivo is not a registered
             broker-dealer and does not provide investment advice.
           </p>
           <p className="text-xs text-muted-foreground whitespace-nowrap">
-            &copy; {new Date().getFullYear()} Nexus. All rights reserved.
+            &copy; {new Date().getFullYear()} Equivo. All rights reserved.
           </p>
         </div>
       </div>

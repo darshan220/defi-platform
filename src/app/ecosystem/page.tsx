@@ -29,9 +29,9 @@ export default function EcosystemPage() {
           <Blocks className="h-3 w-3" />
           ECOSYSTEM
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">Nexus Ecosystem</h1>
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">Equivo Ecosystem</h1>
         <p className="text-xl text-muted-foreground">
-          An overview of apps, protocols, and integrations building the future of tokenized assets on Nexus.
+          An overview of apps, protocols, and integrations building the future of tokenized assets on Equivo.
         </p>
       </motion.div>
 
@@ -106,7 +106,7 @@ export default function EcosystemPage() {
         transition={{ delay: 0.5 }}
         className="mt-12 flex flex-col items-center justify-center p-12 border border-dashed border-border/50 rounded-3xl bg-surface/20 text-center max-w-3xl mx-auto"
       >
-        <h3 className="text-2xl font-bold mb-3">Building on Nexus?</h3>
+        <h3 className="text-2xl font-bold mb-3">Building on Equivo?</h3>
         <p className="text-muted-foreground mb-8">
           Join our ecosystem and bring your protocol to thousands of users trading pre-IPO equity and real-world assets.
         </p>

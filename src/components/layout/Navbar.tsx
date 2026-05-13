@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { MAIN_NAV_ITEMS, MORE_NAV_ITEMS } from "@/constants/nav";
@@ -9,6 +10,8 @@ import { ThemeToggle } from "@/components/common/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Wallet, Menu, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import EquivoLogo from "@/components/logos/EquivoLogo";
+
 
 export function Navbar() {
   const pathname = usePathname();
@@ -21,11 +24,9 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
-                <span className="text-primary-foreground font-bold text-xl">N</span>
-              </div>
+              <EquivoLogo size={32} className="transition-transform group-hover:scale-105" />
               <span className="font-bold text-xl tracking-tight hidden sm:inline-block">
-                Nexus
+                Equivo
               </span>
             </Link>
             

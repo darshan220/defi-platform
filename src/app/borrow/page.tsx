@@ -73,22 +73,24 @@ export default function BorrowPage() {
       >
         {/* Calculator Card */}
         <div
-          className="rounded-2xl border border-white/[0.07] bg-white/[0.02] 
-          backdrop-blur-sm p-6 flex flex-col gap-5 h-full"
+          className="rounded-2xl border border-border bg-card/50 
+          backdrop-blur-sm p-6 flex flex-col gap-5 h-full transition-colors duration-300"
         >
           <div className="flex items-center justify-between mb-1">
-            <h3 className="text-sm font-medium text-white">Select a Company</h3>
+            <h3 className="text-sm font-medium text-foreground">
+              Select a Company
+            </h3>
           </div>
 
           <div className="relative">
             <select
               value={selectedCompany}
               onChange={(e) => setSelectedCompany(e.target.value)}
-              className="w-full appearance-none bg-white/[0.04] border 
-                border-white/[0.08] rounded-xl px-4 py-3 text-sm text-gray-300
-                focus:outline-none focus:border-teal-500/50 focus:bg-white/[0.06]
-                focus:ring-1 focus:ring-teal-500/20 cursor-pointer
-                transition-all duration-150 pr-10"
+              className="w-full appearance-none bg-surface/50 border 
+                border-border rounded-xl px-4 py-3 text-sm text-foreground
+                focus:outline-none focus:border-primary/50 focus:bg-surface
+                focus:ring-1 focus:ring-primary/20 cursor-pointer
+                transition-all duration-300 pr-10"
             >
               <option value="" disabled>
                 Select from available tokens...
@@ -112,12 +114,12 @@ export default function BorrowPage() {
             <div className="flex flex-col gap-2">
               <label
                 className="text-[10px] font-mono tracking-widest 
-                text-gray-500 uppercase"
+                text-muted-foreground uppercase"
               >
                 Share Type
               </label>
               <div
-                className="flex bg-white/[0.03] border border-white/[0.07] 
+                className="flex bg-muted/30 border border-border 
                 rounded-xl p-1 gap-1"
               >
                 {["Common", "Preferred"].map((type) => (
@@ -127,8 +129,8 @@ export default function BorrowPage() {
                     className={cn(
                       "flex-1 py-2 text-xs font-medium rounded-lg transition-all duration-150",
                       shareType === type
-                        ? "bg-white/[0.08] text-white shadow-sm"
-                        : "text-gray-500 hover:text-gray-300",
+                        ? "bg-background text-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground",
                     )}
                   >
                     {type}
@@ -141,12 +143,12 @@ export default function BorrowPage() {
             <div className="flex flex-col gap-2">
               <label
                 className="text-[10px] font-mono tracking-widest 
-                text-gray-500 uppercase"
+                text-muted-foreground uppercase"
               >
                 Input Type
               </label>
               <div
-                className="flex bg-white/[0.03] border border-white/[0.07] 
+                className="flex bg-muted/30 border border-border 
                 rounded-xl p-1 gap-1"
               >
                 {["By Shares", "By Amount"].map((type) => (
@@ -156,8 +158,8 @@ export default function BorrowPage() {
                     className={cn(
                       "flex-1 py-2 text-xs font-medium rounded-lg transition-all duration-150",
                       inputType === type
-                        ? "bg-white/[0.08] text-white shadow-sm"
-                        : "text-gray-500 hover:text-gray-300",
+                        ? "bg-background text-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground",
                     )}
                   >
                     {type}
@@ -187,15 +189,15 @@ export default function BorrowPage() {
                 placeholder={
                   inputType === "By Shares" ? "e.g. 100" : "e.g. 50000"
                 }
-                className="w-full bg-white/[0.04] border border-white/[0.08] 
-                  rounded-xl px-4 py-3 text-sm text-white placeholder:text-gray-600
-                  focus:outline-none focus:border-teal-500/40 focus:bg-white/[0.06]
-                  focus:ring-1 focus:ring-teal-500/20 transition-all duration-150
+                className="w-full bg-surface/50 border border-border 
+                  rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/30
+                  focus:outline-none focus:border-primary/40 focus:bg-surface
+                  focus:ring-1 focus:ring-primary/20 transition-all duration-300
                   [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none"
               />
               <span
                 className="absolute right-4 top-1/2 -translate-y-1/2 
-                text-xs text-gray-600 pointer-events-none"
+                text-xs text-muted-foreground/40 pointer-events-none"
               >
                 {inputType === "By Shares" ? "shares" : "USD"}
               </span>
@@ -204,12 +206,12 @@ export default function BorrowPage() {
 
           <button
             onClick={handleEstimate}
-            className="w-full py-3.5 rounded-xl bg-teal-500 hover:bg-teal-400
-              text-black text-sm font-semibold tracking-wide
+            className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary/90
+              text-primary-foreground text-sm font-semibold tracking-wide
               flex items-center justify-center gap-2
               transition-all duration-150 active:scale-[0.98]
-              shadow-[0_0_20px_rgba(0,229,204,0.15)] 
-              hover:shadow-[0_0_28px_rgba(0,229,204,0.25)]
+              shadow-[0_0_20px_rgba(var(--primary-rgb),0.15)] 
+              hover:shadow-[0_0_28px_rgba(var(--primary-rgb),0.25)]
               disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
             disabled={!inputValue || !selectedCompany}
           >
@@ -220,8 +222,8 @@ export default function BorrowPage() {
 
         {/* Result Card */}
         <div
-          className="rounded-2xl border border-white/[0.07] bg-white/[0.02] 
-          backdrop-blur-sm p-6 flex flex-col gap-5 min-h-[400px]"
+          className="rounded-2xl border border-border bg-card/50 
+          backdrop-blur-sm p-6 flex flex-col gap-5 min-h-[400px] transition-colors duration-300"
         >
           {!showCalculation ? (
             <div className="flex flex-col h-full">
@@ -229,11 +231,11 @@ export default function BorrowPage() {
               <div className="flex items-center gap-2 mb-6">
                 <span
                   className="text-[10px] font-mono tracking-widest 
-                  text-teal-400 uppercase"
+                  text-primary uppercase"
                 >
                   Calculation
                 </span>
-                <div className="flex-1 h-px bg-teal-500/20" />
+                <div className="flex-1 h-px bg-primary/20" />
               </div>
 
               {/* Empty state */}
@@ -241,17 +243,12 @@ export default function BorrowPage() {
                 className="flex-1 flex flex-col items-center justify-center 
                 gap-4 py-12"
               >
-                <div
-                  className="w-14 h-14 rounded-2xl bg-white/[0.03] 
-                  border border-white/[0.06] flex items-center justify-center"
-                >
-                  <Calculator size={20} className="text-gray-600" />
-                </div>
+                <Calculator size={20} className="text-muted-foreground/40" />
                 <div className="text-center">
-                  <p className="text-sm font-medium text-gray-400 mb-1">
+                  <p className="text-sm font-medium text-muted-foreground mb-1">
                     Your estimate will appear here
                   </p>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-muted-foreground/40">
                     Select a company and enter collateral details
                   </p>
                 </div>
@@ -267,11 +264,11 @@ export default function BorrowPage() {
               <div className="flex items-center gap-2 mb-2">
                 <span
                   className="text-[10px] font-mono tracking-widest 
-                  text-teal-400 uppercase"
+                  text-primary uppercase"
                 >
                   Calculation
                 </span>
-                <div className="flex-1 h-px bg-teal-500/20" />
+                <div className="flex-1 h-px bg-primary/20" />
               </div>
 
               {/* Result rows */}
@@ -287,15 +284,15 @@ export default function BorrowPage() {
                   className={cn(
                     "flex items-center justify-between py-3 px-4 rounded-xl",
                     highlight
-                      ? "bg-teal-500/10 border border-teal-500/20"
-                      : "bg-white/[0.02] border border-white/[0.05]",
+                      ? "bg-primary/10 border border-primary/20"
+                      : "bg-surface/30 border border-border/50",
                   )}
                 >
-                  <span className="text-xs text-gray-400">{label}</span>
+                  <span className="text-xs text-muted-foreground">{label}</span>
                   <span
                     className={cn(
                       "text-sm font-semibold font-mono",
-                      highlight ? "text-teal-400" : "text-white",
+                      highlight ? "text-primary" : "text-foreground",
                     )}
                   >
                     {value}
@@ -307,17 +304,17 @@ export default function BorrowPage() {
               <div className="flex items-center gap-2 mt-1 px-1">
                 <span className="text-xs text-gray-500">Risk level:</span>
                 <div className="flex gap-1">
-                  <div className="w-6 h-1.5 rounded-full bg-teal-500" />
-                  <div className="w-6 h-1.5 rounded-full bg-teal-500/40" />
+                  <div className="w-6 h-1.5 rounded-full bg-primary" />
+                  <div className="w-6 h-1.5 rounded-full bg-primary/40" />
                   <div className="w-6 h-1.5 rounded-full bg-white/10" />
                 </div>
-                <span className="text-xs text-teal-400 font-medium">Low</span>
+                <span className="text-xs text-primary font-medium">Low</span>
               </div>
 
               <button
-                className="w-full mt-4 py-3 rounded-xl border border-white/[0.08] 
-                bg-white/[0.02] hover:bg-white/[0.04] text-white text-xs font-medium
-                transition-all duration-150"
+                className="w-full mt-4 py-3 rounded-xl border border-border 
+                bg-background hover:bg-surface text-foreground text-xs font-medium
+                transition-all duration-300"
               >
                 Proceed with Application
               </button>
@@ -335,11 +332,11 @@ export default function BorrowPage() {
       >
         {/* Section title */}
         <div className="flex items-center gap-3 mb-4">
-          <TrendingUp size={16} className="text-teal-400" />
+          <TrendingUp size={16} className="text-primary" />
           <h2 className="text-base font-semibold text-white">
             Supported Collateral
           </h2>
-          <div className="flex-1 h-px bg-white/[0.06]" />
+          <div className="flex-1 h-px bg-border/50" />
         </div>
 
         {/* Table */}
@@ -347,7 +344,7 @@ export default function BorrowPage() {
           <div className="min-w-[900px]">
             {/* Table header */}
             <div
-              className="grid px-5 py-3 bg-white/[0.02] border-b border-white/[0.06]"
+              className="grid px-5 py-3 bg-surface/50 border-b border-border"
               style={{ gridTemplateColumns: "2fr 1.2fr 1fr 1fr 1fr 1fr auto" }}
             >
               {[
@@ -362,7 +359,7 @@ export default function BorrowPage() {
                 <span
                   key={col}
                   className="text-[10px] font-mono tracking-wider 
-                  text-gray-500 uppercase"
+                  text-muted-foreground uppercase"
                 >
                   {col}
                 </span>
@@ -376,8 +373,8 @@ export default function BorrowPage() {
                 <div
                   key={co.id}
                   className="grid items-center px-5 py-4 
-                    border-b border-white/[0.04] last:border-0
-                    hover:bg-white/[0.02] transition-colors duration-100"
+                    border-b border-border/50 last:border-0
+                    hover:bg-surface/30 transition-colors duration-300"
                   style={{
                     gridTemplateColumns: "2fr 1.2fr 1fr 1fr 1fr 1fr auto",
                   }}
@@ -399,20 +396,20 @@ export default function BorrowPage() {
                         co.symbol[0]
                       )}
                     </div>
-                    <span className="text-sm font-medium text-white">
+                    <span className="text-sm font-medium text-foreground">
                       {co.name}
                     </span>
                   </div>
 
                   {/* Token Price */}
                   <div>
-                    <p className="text-sm font-mono text-white">
+                    <p className="text-sm font-mono text-foreground">
                       ${co.price.toFixed(2)}
                     </p>
                     <p
                       className={cn(
                         "text-[10px] font-mono",
-                        co.priceChange > 0 ? "text-teal-400" : "text-red-400",
+                        co.priceChange > 0 ? "text-primary" : "text-negative",
                       )}
                     >
                       {co.priceChange > 0 ? "↗" : "↘"}{" "}
@@ -420,24 +417,24 @@ export default function BorrowPage() {
                     </p>
                   </div>
 
-                  <span className="text-sm text-gray-400 font-mono">
+                  <span className="text-sm text-muted-foreground font-mono">
                     {co.impliedVal}
                   </span>
-                  <span className="text-sm text-gray-300 font-mono">
+                  <span className="text-sm text-foreground font-mono">
                     ${co.markPrice.toFixed(2)}
                   </span>
-                  <span className="text-sm text-gray-400 font-mono">
+                  <span className="text-sm text-muted-foreground font-mono">
                     {co.markVal}
                   </span>
-                  <span className="text-sm text-gray-400 font-mono">
+                  <span className="text-sm text-muted-foreground font-mono">
                     {co.allTimeVol}
                   </span>
 
                   {/* Action */}
                   <div className="flex justify-end">
                     <button
-                      className="text-xs font-medium text-teal-400 
-                      hover:text-teal-300 flex items-center gap-1 
+                      className="text-xs font-medium text-primary 
+                      hover:text-primary/80 flex items-center gap-1 
                       transition-colors duration-100 whitespace-nowrap"
                     >
                       Borrow <ArrowUpRight size={11} />

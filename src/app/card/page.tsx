@@ -19,7 +19,7 @@ export default function CardPage() {
           >
             <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-secondary mb-2 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 w-fit">
               <CreditCard className="h-3 w-3" />
-              NEXUS BLACK
+              EQUIVO BLACK
             </div>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight">
               The credit card <br />
@@ -61,7 +61,7 @@ export default function CardPage() {
             >
               {/* Card content */}
               <div className="flex justify-between items-start translate-z-10">
-                <div className="text-white font-bold text-xl tracking-widest">NEXUS</div>
+                <div className="text-white font-bold text-xl tracking-widest">EQUIVO</div>
                 <CreditCard className="h-8 w-8 text-primary" />
               </div>
               <div className="translate-z-10 flex flex-col gap-1">
@@ -133,7 +133,7 @@ export default function CardPage() {
                 <Globe className="h-6 w-6 text-positive" />
               </div>
               <h3 className="text-xl font-bold mb-3">Global Acceptance</h3>
-              <p className="text-muted-foreground text-sm">Use your Nexus Black card anywhere major credit cards are accepted worldwide.</p>
+              <p className="text-muted-foreground text-sm">Use your Equivo Black card anywhere major credit cards are accepted worldwide.</p>
             </GlowCard>
 
             <GlowCard className="p-8">

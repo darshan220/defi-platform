@@ -57,7 +57,7 @@ export default function DepositPage() {
       content: (
         <>
           <PanelHeader>Your USDos Bal</PanelHeader>
-          <div className="text-3xl font-mono font-bold text-white mt-4">
+          <div className="text-3xl font-mono font-bold text-foreground mt-4">
             0.00
           </div>
         </>
@@ -68,7 +68,7 @@ export default function DepositPage() {
       content: (
         <>
           <PanelHeader>Your Staked</PanelHeader>
-          <div className="text-3xl font-mono font-bold text-white mt-4">
+          <div className="text-3xl font-mono font-bold text-foreground mt-4">
             0.00
           </div>
         </>
@@ -79,10 +79,10 @@ export default function DepositPage() {
       content: (
         <>
           <PanelHeader>Staking APY</PanelHeader>
-          <div className="flex items-center gap-3 mt-4 text-[#00E5CC]">
+          <div className="flex items-center gap-3 mt-4 text-primary">
             <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E5CC] opacity-60"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#00E5CC]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
             </span>
             <div className="text-3xl font-mono font-bold">
               {animatedApy.toFixed(1)}%{" "}
@@ -101,7 +101,7 @@ export default function DepositPage() {
       content: (
         <div className="flex flex-col h-full">
           <div className="flex items-center gap-2 mb-6">
-            <div className="flex bg-black/40 border border-white/[0.06] rounded-full p-1">
+          <div className="flex bg-muted/30 border border-border rounded-full p-1">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
@@ -114,8 +114,8 @@ export default function DepositPage() {
                     className={cn(
                       "relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300",
                       isActive
-                        ? "text-white"
-                        : "text-gray-400 hover:text-white",
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground",
                     )}
                   >
                     <span className="relative z-10">
@@ -124,7 +124,7 @@ export default function DepositPage() {
                     {isActive && (
                       <motion.div
                         layoutId="activeTabPill"
-                        className="absolute inset-0 bg-white/10 rounded-full"
+                        className="absolute inset-0 bg-primary/10 rounded-full"
                         initial={false}
                         transition={{
                           type: "spring",
@@ -151,12 +151,12 @@ export default function DepositPage() {
               >
                 {activeTab === "buy" && (
                   <>
-                    <div className="bg-black/30 border border-white/[0.06] rounded-xl p-4">
+                    <div className="bg-surface/50 border border-border rounded-xl p-4">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider">
+                        <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           From
                         </span>
-                        <span className="text-xs font-mono text-gray-500">
+                        <span className="text-xs font-mono text-muted-foreground">
                           Balance: 0.00
                         </span>
                       </div>
@@ -166,13 +166,13 @@ export default function DepositPage() {
                           placeholder="0.0"
                           value={amount}
                           onChange={(e) => setAmount(e.target.value)}
-                          className="w-full bg-transparent text-3xl font-mono text-white placeholder:text-gray-700 outline-none border-none ring-0 p-0"
+                          className="w-full bg-transparent text-3xl font-mono text-foreground placeholder:text-muted-foreground/30 outline-none border-none ring-0 p-0"
                         />
-                        <div className="flex items-center gap-2 bg-[#080B0F] border border-white/10 px-3 py-1.5 rounded-lg shrink-0">
+                        <div className="flex items-center gap-2 bg-background border border-border px-3 py-1.5 rounded-lg shrink-0">
                           <div className="w-5 h-5 rounded-full bg-[#26A17B] flex items-center justify-center text-[9px] font-bold text-white">
                             ₮
                           </div>
-                          <span className="font-semibold text-white text-sm">
+                          <span className="font-semibold text-foreground text-sm">
                             USDT
                           </span>
                         </div>
@@ -180,14 +180,14 @@ export default function DepositPage() {
                     </div>
 
                     <div className="flex justify-center -my-6 relative z-10">
-                      <div className="bg-[#080B0F] border border-white/10 rounded-full p-1.5 text-gray-400">
+                      <div className="bg-background border border-border rounded-full p-1.5 text-muted-foreground">
                         <ArrowDown className="h-4 w-4" />
                       </div>
                     </div>
 
-                    <div className="bg-black/30 border border-white/[0.06] rounded-xl p-4">
+                    <div className="bg-surface/50 border border-border rounded-xl p-4">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider">
+                        <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           To
                         </span>
                       </div>
@@ -197,13 +197,13 @@ export default function DepositPage() {
                           placeholder="0.0"
                           readOnly
                           value={amount}
-                          className="w-full bg-transparent text-3xl font-mono text-white placeholder:text-gray-700 outline-none border-none ring-0 p-0 opacity-80"
+                          className="w-full bg-transparent text-3xl font-mono text-foreground placeholder:text-muted-foreground/30 outline-none border-none ring-0 p-0 opacity-80"
                         />
-                        <div className="flex items-center gap-2 bg-[#080B0F] border border-white/10 px-3 py-1.5 rounded-lg shrink-0">
-                          <div className="w-5 h-5 rounded-full bg-[#00E5CC] flex items-center justify-center text-[9px] font-bold text-black">
+                        <div className="flex items-center gap-2 bg-background border border-border px-3 py-1.5 rounded-lg shrink-0">
+                          <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-[9px] font-bold text-primary-foreground">
                             U
                           </div>
-                          <span className="font-semibold text-white text-sm">
+                          <span className="font-semibold text-foreground text-sm">
                             USDos
                           </span>
                         </div>
@@ -211,10 +211,10 @@ export default function DepositPage() {
                     </div>
 
                     <div className="flex justify-between items-center mt-2 px-1">
-                      <span className="text-sm text-gray-400">
+                      <span className="text-sm text-muted-foreground">
                         You Receive:
                       </span>
-                      <span className="font-mono text-lg font-bold text-[#00E5CC]">
+                      <span className="font-mono text-lg font-bold text-primary">
                         {amountNum > 0 ? amountNum.toFixed(2) : "0.00"} USDos
                       </span>
                     </div>
@@ -223,12 +223,12 @@ export default function DepositPage() {
 
                 {activeTab === "stake" && (
                   <>
-                    <div className="bg-black/30 border border-white/[0.06] rounded-xl p-4">
+                    <div className="bg-surface/50 border border-border rounded-xl p-4">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider">
+                        <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           Stake Amount
                         </span>
-                        <span className="text-xs font-mono text-gray-500">
+                        <span className="text-xs font-mono text-muted-foreground">
                           Available: 0.00 USDos
                         </span>
                       </div>
@@ -238,28 +238,28 @@ export default function DepositPage() {
                           placeholder="0.0"
                           value={amount}
                           onChange={(e) => setAmount(e.target.value)}
-                          className="w-full bg-transparent text-3xl font-mono text-white placeholder:text-gray-700 outline-none border-none ring-0 p-0"
+                          className="w-full bg-transparent text-3xl font-mono text-foreground placeholder:text-muted-foreground/30 outline-none border-none ring-0 p-0"
                         />
-                        <button className="text-xs font-semibold text-[#00E5CC] bg-[#00E5CC]/10 hover:bg-[#00E5CC]/20 px-3 py-1.5 rounded-lg transition-colors">
+                        <button className="text-xs font-semibold text-primary bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-lg transition-colors">
                           MAX
                         </button>
                       </div>
                     </div>
 
-                    <div className="p-4 bg-[#00E5CC]/5 rounded-xl border border-[#00E5CC]/10">
-                      <p className="text-sm text-gray-300">
+                    <div className="p-4 bg-primary/5 rounded-xl border border-primary/10">
+                      <p className="text-sm text-muted-foreground">
                         You will stake{" "}
-                        <span className="text-white font-bold">
+                        <span className="text-foreground font-bold">
                           {amountNum > 0 ? amountNum.toFixed(2) : "0.00"} USDos
                         </span>{" "}
                         and earn{" "}
-                        <span className="text-[#00E5CC] font-bold">
+                        <span className="text-primary font-bold">
                           14.2% APY
                         </span>
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-muted-foreground mt-1">
                         Estimated yearly earnings:{" "}
-                        <span className="text-gray-300 font-mono">
+                        <span className="text-muted-foreground font-mono">
                           {estimatedYield} USDos
                         </span>
                       </p>
@@ -269,12 +269,12 @@ export default function DepositPage() {
 
                 {activeTab === "unstake" && (
                   <>
-                    <div className="bg-black/30 border border-white/[0.06] rounded-xl p-4">
+                    <div className="bg-surface/50 border border-border rounded-xl p-4">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider">
+                        <span className="text-xs text-muted-foreground uppercase tracking-wider">
                           Unstake Amount
                         </span>
-                        <span className="text-xs font-mono text-gray-500">
+                        <span className="text-xs font-mono text-muted-foreground">
                           Staked: 0.00 USDos
                         </span>
                       </div>
@@ -284,7 +284,7 @@ export default function DepositPage() {
                           placeholder="0.0"
                           value={amount}
                           onChange={(e) => setAmount(e.target.value)}
-                          className="w-full bg-transparent text-3xl font-mono text-white placeholder:text-gray-700 outline-none border-none ring-0 p-0"
+                          className="w-full bg-transparent text-3xl font-mono text-foreground placeholder:text-muted-foreground/30 outline-none border-none ring-0 p-0"
                         />
                         <button className="text-xs font-semibold text-white bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors">
                           MAX
@@ -292,9 +292,9 @@ export default function DepositPage() {
                       </div>
                     </div>
 
-                    <div className="p-4 bg-white/[0.02] rounded-xl border border-white/[0.06] flex gap-3 items-start">
-                      <Info className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
-                      <p className="text-sm text-gray-400">
+                    <div className="p-4 bg-muted/20 rounded-xl border border-border flex gap-3 items-start">
+                      <Info className="w-4 h-4 text-muted-foreground shrink-0 mt-0.5" />
+                      <p className="text-sm text-muted-foreground">
                         Unstaking will stop earning rewards immediately. There
                         is no lock period, so you can withdraw right away.
                       </p>
@@ -305,7 +305,7 @@ export default function DepositPage() {
             </AnimatePresence>
           </div>
 
-          <button className="w-full h-12 mt-6 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium transition-all duration-200">
+          <button className="w-full h-12 mt-6 rounded-lg bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary font-medium transition-all duration-200">
             Connect Wallet
           </button>
         </div>
@@ -318,29 +318,29 @@ export default function DepositPage() {
           <PanelHeader>Transaction</PanelHeader>
 
           <div className="flex-1 mt-4">
-            <div className="flex flex-col gap-6 relative before:absolute before:top-2 before:bottom-2 before:left-[9px] before:w-px before:border-l before:border-dashed before:border-white/20">
+            <div className="flex flex-col gap-6 relative before:absolute before:top-2 before:bottom-2 before:left-[9px] before:w-px before:border-l before:border-dashed before:border-border">
               <div className="flex gap-4 relative z-10">
-                <div className="bg-[#080B0F] mt-0.5 rounded-full h-fit border border-white/10">
-                  <CheckCircle2 className="h-5 w-5 text-gray-500" />
+                <div className="bg-background mt-0.5 rounded-full h-fit border border-border">
+                  <CheckCircle2 className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <div>
-                  <p className="font-medium text-sm text-white mb-1">
+                  <p className="font-medium text-sm text-foreground mb-1">
                     Step 1: Approve
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     Allow protocol to use USDT
                   </p>
                 </div>
               </div>
               <div className="flex gap-4 relative z-10">
-                <div className="bg-[#080B0F] mt-0.5 rounded-full h-fit border border-white/10">
-                  <Circle className="h-5 w-5 text-gray-600" />
+                <div className="bg-background mt-0.5 rounded-full h-fit border border-border">
+                  <Circle className="h-5 w-5 text-muted-foreground/40" />
                 </div>
                 <div>
-                  <p className="font-medium text-sm text-gray-400 mb-1">
+                  <p className="font-medium text-sm text-muted-foreground mb-1">
                     Step 2: Deposit
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     Swap and receive USDos
                   </p>
                 </div>
@@ -348,7 +348,7 @@ export default function DepositPage() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center gap-2 text-xs text-gray-500">
+          <div className="mt-6 pt-4 border-t border-border flex items-center gap-2 text-xs text-muted-foreground">
             <HelpCircle className="h-3.5 w-3.5" />
             <span>How it works</span>
           </div>

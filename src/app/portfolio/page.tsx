@@ -139,28 +139,29 @@ export default function PortfolioPage() {
                         >
                           <stop
                             offset="5%"
-                            stopColor="#00E5CC"
+                            stopColor="var(--primary)"
                             stopOpacity={0.3}
                           />
                           <stop
                             offset="95%"
-                            stopColor="#00E5CC"
+                            stopColor="var(--primary)"
                             stopOpacity={0}
                           />
                         </linearGradient>
                       </defs>
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "#1a1a1a",
-                          borderColor: "#333",
+                          backgroundColor: "var(--card)",
+                          borderColor: "var(--border)",
                           borderRadius: "8px",
+                          color: "var(--foreground)"
                         }}
-                        itemStyle={{ color: "#00E5CC", fontWeight: "bold" }}
+                        itemStyle={{ color: "var(--primary)", fontWeight: "bold" }}
                       />
                       <Area
                         type="monotone"
                         dataKey="value"
-                        stroke="#00E5CC"
+                        stroke="var(--primary)"
                         strokeWidth={3}
                         fillOpacity={1}
                         fill="url(#colorValue)"
