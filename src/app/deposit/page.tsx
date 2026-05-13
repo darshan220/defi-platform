@@ -358,47 +358,42 @@ export default function DepositPage() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className="p-8 min-h-full"
-    >
-      <div className="max-w-7xl mx-auto mb-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col gap-3"
-        >
-          <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-[#00E5CC] mb-1">
-            <span>01</span>
-            <span className="text-white/20">///</span>
-            <span>DEPOSIT</span>
-            <span className="text-white/20">///</span>
-            <span>LIVE</span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-            Deposit
-          </h1>
-          <p className="text-lg text-gray-400 max-w-2xl">
-            Swap, stake and earn yield on your USDos stablecoin assets.
-          </p>
-        </motion.div>
-      </div>
+    <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 py-12 flex flex-col gap-12">
+      {/* Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex flex-col gap-4"
+      >
+        <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-primary mb-2">
+          <span>01</span>
+          <span className="text-muted-foreground">///</span>
+          <span>DEPOSIT</span>
+          <span className="text-muted-foreground">///</span>
+          <span>LIVE</span>
+        </div>
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+          Deposit
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-2xl">
+          Swap, stake and earn yield on your USDos stablecoin assets.
+        </p>
+      </motion.div>
 
-      <div className="grid grid-cols-12 auto-rows-auto gap-3 max-w-7xl mx-auto">
+      {/* Stats/Panels Grid */}
+      <div className="grid grid-cols-12 auto-rows-auto gap-6">
         {panels.map((p, i) => (
           <motion.div
             key={i}
             className={p.span}
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05, duration: 0.2 }}
+            transition={{ delay: i * 0.05 + 0.1 }}
           >
             <Panel className="h-full">{p.content}</Panel>
           </motion.div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
