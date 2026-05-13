@@ -1,0 +1,135 @@
+"use client";
+
+import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { MAIN_NAV_ITEMS, MORE_NAV_ITEMS } from "@/constants/nav";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { Button } from "@/components/ui/button";
+import { Wallet, Menu, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export function Navbar() {
+  const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isMoreDropdownOpen, setIsMoreDropdownOpen] = React.useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+      <div className="mx-auto w-full max-w-screen-2xl px-4 md:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <div className="flex items-center gap-8">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
+                <span className="text-primary-foreground font-bold text-xl">N</span>
+              </div>
+              <span className="font-bold text-xl tracking-tight hidden sm:inline-block">
+                Nexus
+              </span>
+            </Link>
+            
+            <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
+              {MAIN_NAV_ITEMS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "px-4 py-2 rounded-full transition-colors hover:text-primary hover:bg-surface",
+                    pathname === item.href || pathname?.startsWith(item.href + "/")
+                      ? "bg-surface text-primary font-semibold"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  {item.title}
+                </Link>
+              ))}
+
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsMoreDropdownOpen(true)}
+                onMouseLeave={() => setIsMoreDropdownOpen(false)}
+              >
+                <button className="px-4 py-2 rounded-full transition-colors hover:text-primary hover:bg-surface text-muted-foreground flex items-center gap-1">
+                  More <ChevronDown className="h-4 w-4" />
+                </button>
+                <AnimatePresence>
+                  {isMoreDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-48 rounded-xl border border-border bg-card p-2 shadow-xl backdrop-blur-xl"
+                    >
+                      {MORE_NAV_ITEMS.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="block px-4 py-2 text-sm text-muted-foreground hover:bg-surface hover:text-primary rounded-lg transition-colors"
+                        >
+                          {item.title}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </nav>
+          </div>
+
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="hidden sm:block">
+              <ThemeToggle />
+            </div>
+            <Button className="rounded-full gap-2 px-5 font-semibold bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground border border-primary/20 transition-all shadow-[0_0_15px_rgba(0,229,204,0.15)] hover:shadow-[0_0_25px_rgba(0,229,204,0.3)]">
+              <Wallet className="h-4 w-4" />
+              <span className="hidden sm:inline">Connect Wallet</span>
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-b border-border bg-background"
+          >
+            <div className="flex flex-col px-4 py-4 space-y-2">
+              {[...MAIN_NAV_ITEMS, ...MORE_NAV_ITEMS].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "px-4 py-3 rounded-xl transition-colors font-medium",
+                    pathname === item.href
+                      ? "bg-surface text-primary"
+                      : "text-muted-foreground hover:bg-surface hover:text-foreground"
+                  )}
+                >
+                  {item.title}
+                </Link>
+              ))}
+              <div className="pt-4 flex justify-between items-center border-t border-border mt-2">
+                <span className="text-muted-foreground font-medium">Theme</span>
+                <ThemeToggle />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
