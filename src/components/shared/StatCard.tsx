@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { GlowCard } from "./GlowCard";
 
 interface StatCardProps {
   title: string;
@@ -10,21 +9,21 @@ interface StatCardProps {
 
 export function StatCard({ title, value, icon, subValue }: StatCardProps) {
   return (
-    <GlowCard className="p-6">
+    <div className="p-6 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm font-medium text-muted-foreground mb-1">{title}</p>
+          <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">{title}</p>
           <div className="flex items-baseline gap-2">
-            <h3 className="text-2xl font-bold font-mono tracking-tight text-foreground">{value}</h3>
-            {subValue && <span className="text-sm">{subValue}</span>}
+            <h3 className="text-3xl font-bold tracking-tight text-foreground">{value}</h3>
+            {subValue && <div className="ml-1">{subValue}</div>}
           </div>
         </div>
         {icon && (
-          <div className="h-10 w-10 rounded-xl bg-surface/50 border border-border flex items-center justify-center text-primary shadow-sm">
+          <div className="h-12 w-12 rounded-xl bg-surface border border-border flex items-center justify-center text-primary shadow-sm">
             {icon}
           </div>
         )}
       </div>
-    </GlowCard>
+    </div>
   );
 }

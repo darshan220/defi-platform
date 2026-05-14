@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { ConnectWalletModal } from "@/components/wallet/ConnectWalletModal";
+import { Footer } from "@/components/shared/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,15 +30,22 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground flex h-screen overflow-hidden`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange={false}
         >
           <Sidebar />
-          <main className="flex-1 overflow-y-auto">{children}</main>
+          <div className="flex-1 flex flex-col overflow-hidden">
+            <main className="flex-1 overflow-y-auto">
+              <div className="min-h-full flex flex-col">
+                <div className="flex-1">{children}</div>
+                <Footer />
+              </div>
+            </main>
+          </div>
+          <ConnectWalletModal />
         </ThemeProvider>
       </body>
-
     </html>
   );
 }

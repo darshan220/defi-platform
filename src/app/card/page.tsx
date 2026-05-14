@@ -1,13 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { CreditCard, Zap, ShieldCheck, Globe, RefreshCcw } from "lucide-react";
 import { GlowCard } from "@/components/shared/GlowCard";
 import { Button } from "@/components/ui/button";
+import { ApplyDialog } from "@/components/shared/ApplyDialog";
 
 export default function CardPage() {
+  const [isApplyOpen, setIsApplyOpen] = useState(false);
+
   return (
     <div className="w-full overflow-hidden">
+      <ApplyDialog 
+        open={isApplyOpen} 
+        onOpenChange={setIsApplyOpen} 
+        title="Apply for Equivo Black"
+        description="Get access to a high-limit credit card backed by your private equity collateral."
+      />
       <div className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 py-12 lg:py-24 flex flex-col gap-24">
         
         {/* Hero Section */}
@@ -29,7 +39,11 @@ export default function CardPage() {
               Use your pre-IPO equity as collateral. Spend today anywhere in the world. Keep your upside for tomorrow.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-4">
-              <Button size="lg" className="h-14 px-8 text-lg font-bold bg-foreground text-background hover:bg-foreground/90 w-full sm:w-auto">
+              <Button 
+                size="lg" 
+                className="h-14 px-8 text-lg font-bold bg-foreground text-background hover:bg-foreground/90 w-full sm:w-auto cursor-pointer"
+                onClick={() => setIsApplyOpen(true)}
+              >
                 Apply Now →
               </Button>
               <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-medium w-full sm:w-auto">

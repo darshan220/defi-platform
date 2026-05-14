@@ -11,10 +11,10 @@ export function Panel({ children, className, cols = 1, ...props }: PanelProps) {
   return (
     <div 
       className={cn(
-        "rounded-xl border border-border",
-        "bg-card/50 backdrop-blur-sm",
-        "p-5 relative overflow-hidden",
-        "hover:border-border/80 transition-colors duration-300",
+        "rounded-2xl border border-border",
+        "bg-card shadow-sm",
+        "p-6 relative overflow-hidden",
+        "hover:shadow-md transition-all duration-300",
         className
       )}
       {...props}
@@ -28,7 +28,7 @@ export function PanelHeader({ children, className, ...props }: React.HTMLAttribu
   return (
     <p 
       className={cn(
-        "text-[9px] font-mono tracking-[0.15em] text-muted-foreground uppercase mb-3",
+        "text-[10px] font-bold tracking-[0.05em] text-muted-foreground uppercase mb-4",
         className
       )}
       {...props}

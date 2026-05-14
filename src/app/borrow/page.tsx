@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { tokens } from "@/lib/mockData";
 import { cn } from "@/lib/utils";
+import { ApplyDialog } from "@/components/shared/ApplyDialog";
 
 // Helper for company brand colors to match premium design
 const getCompanyColors = (id: string) => {
@@ -33,6 +34,7 @@ export default function BorrowPage() {
   const [inputValue, setInputValue] = useState("");
   const [selectedCompany, setSelectedCompany] = useState("");
   const [showCalculation, setShowCalculation] = useState(false);
+  const [isApplyOpen, setIsApplyOpen] = useState(false);
 
   const handleEstimate = () => {
     if (inputValue && selectedCompany) {
@@ -42,23 +44,22 @@ export default function BorrowPage() {
 
   return (
     <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 py-12 flex flex-col gap-12">
-      {/* Hero Section */}
+      <ApplyDialog
+        open={isApplyOpen}
+        onOpenChange={setIsApplyOpen}
+        title="Equity Loan Application"
+        description="Submit your application to borrow against your private company shares."
+      />
+      {/* Page Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-2"
       >
-        <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-primary mb-2">
-          <span>04</span>
-          <span className="text-muted-foreground">///</span>
-          <span>BORROW</span>
-          <span className="text-muted-foreground">///</span>
-          <span>LIVE</span>
-        </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+        <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
           Borrow
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl">
+        <p className="text-lg text-muted-foreground max-w-2xl">
           Use your private company equity as collateral to access instant
           liquidity without selling your shares or triggering taxable events.
         </p>
@@ -92,11 +93,15 @@ export default function BorrowPage() {
                 focus:ring-1 focus:ring-primary/20 cursor-pointer
                 transition-all duration-300 pr-10"
             >
-              <option value="" disabled>
+              <option value="" disabled className="bg-surface text-foreground">
                 Select from available tokens...
               </option>
               {tokens.map((t) => (
-                <option key={t.id} value={t.id}>
+                <option
+                  key={t.id}
+                  value={t.id}
+                  className="bg-surface text-foreground"
+                >
                   {t.name} — {t.symbol}
                 </option>
               ))}
@@ -127,7 +132,7 @@ export default function BorrowPage() {
                     key={type}
                     onClick={() => setShareType(type)}
                     className={cn(
-                      "flex-1 py-2 text-xs font-medium rounded-lg transition-all duration-150",
+                      "flex-1 py-2 text-xs font-medium rounded-lg transition-all duration-150 cursor-pointer",
                       shareType === type
                         ? "bg-background text-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground",
@@ -156,7 +161,7 @@ export default function BorrowPage() {
                     key={type}
                     onClick={() => setInputType(type)}
                     className={cn(
-                      "flex-1 py-2 text-xs font-medium rounded-lg transition-all duration-150",
+                      "flex-1 py-2 text-xs font-medium rounded-lg transition-all duration-150 cursor-pointer",
                       inputType === type
                         ? "bg-background text-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground",
@@ -212,7 +217,8 @@ export default function BorrowPage() {
               transition-all duration-150 active:scale-[0.98]
               shadow-[0_0_20px_rgba(var(--primary-rgb),0.15)] 
               hover:shadow-[0_0_28px_rgba(var(--primary-rgb),0.25)]
-              disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
+              disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none
+              cursor-pointer"
             disabled={!inputValue || !selectedCompany}
           >
             Estimate Loan
@@ -312,9 +318,10 @@ export default function BorrowPage() {
               </div>
 
               <button
+                onClick={() => setIsApplyOpen(true)}
                 className="w-full mt-4 py-3 rounded-xl border border-border 
                 bg-background hover:bg-surface text-foreground text-xs font-medium
-                transition-all duration-300"
+                transition-all duration-300 cursor-pointer"
               >
                 Proceed with Application
               </button>
@@ -433,9 +440,10 @@ export default function BorrowPage() {
                   {/* Action */}
                   <div className="flex justify-end">
                     <button
+                      onClick={() => setIsApplyOpen(true)}
                       className="text-xs font-medium text-primary 
                       hover:text-primary/80 flex items-center gap-1 
-                      transition-colors duration-100 whitespace-nowrap"
+                      transition-colors duration-100 whitespace-nowrap cursor-pointer"
                     >
                       Borrow <ArrowUpRight size={11} />
                     </button>

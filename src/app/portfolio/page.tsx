@@ -12,6 +12,8 @@ import {
   ArrowUpRight,
   Droplets,
 } from "lucide-react";
+import { useWalletStore } from "@/store/useWalletStore";
+import { ConnectWalletButton } from "@/components/wallet/ConnectWalletButton";
 import { GlowCard } from "@/components/shared/GlowCard";
 import { Button } from "@/components/ui/button";
 import { tokens } from "@/lib/mockData";
@@ -37,7 +39,8 @@ const performanceData = [
 ];
 
 export default function PortfolioPage() {
-  const [isConnected, setIsConnected] = useState(false);
+  const { connectedAddress } = useWalletStore();
+  const isConnected = !!connectedAddress;
 
   return (
     <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 py-12 flex flex-col gap-12">
@@ -47,10 +50,10 @@ export default function PortfolioPage() {
         className="flex justify-between items-end"
       >
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tighter mb-2">
+          <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
             Portfolio
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-lg text-muted-foreground max-w-2xl">
             Manage your assets, track performance, and claim rewards.
           </p>
         </div>
@@ -82,13 +85,9 @@ export default function PortfolioPage() {
               Connect your wallet to view your deposits, open positions, staked
               assets, and claimable rewards.
             </p>
-            <Button
-              size="lg"
-              className="font-bold px-8 bg-primary text-primary-foreground hover:bg-primary/90"
-              onClick={() => setIsConnected(true)}
-            >
-              Connect Wallet
-            </Button>
+            <div className="flex justify-center">
+              <ConnectWalletButton className="max-w-[200px]" />
+            </div>
           </motion.div>
         ) : (
           <motion.div

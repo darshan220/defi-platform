@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import EquivoLogo from "@/components/logos/EquivoLogo";
+import { ConnectWalletButton } from "@/components/wallet/ConnectWalletButton";
 
 const NAV_ITEMS = [
   { href: "/deposit", label: "Deposit", icon: ArrowDownToLine },
@@ -36,20 +37,18 @@ export function Sidebar() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <aside className="w-[220px] h-screen shrink-0 bg-sidebar border-r border-sidebar-border flex flex-col hidden md:flex transition-colors duration-300">
+    <aside className="w-[240px] h-screen shrink-0 bg-[#111827] border-r border-slate-800 flex flex-col hidden md:flex transition-colors duration-300">
       {/* Logo Area */}
-      <div className="h-[72px] px-6 flex items-center gap-3">
+      <div className="h-[80px] px-6 flex items-center gap-3">
         <EquivoLogo size={32} />
-        <span className="font-semibold text-lg tracking-wide text-foreground">
+        <span className="font-bold text-xl tracking-wider text-white">
           EQUIVO
         </span>
       </div>
 
       {/* Action Button Above Nav */}
-      <div className="px-4 mb-2">
-        <button className="w-full py-2.5 rounded-lg text-sm font-medium text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-all duration-200">
-          Connect Wallet
-        </button>
+      <div className="px-4 mb-6">
+        <ConnectWalletButton />
       </div>
 
       {/* Main Navigation */}
@@ -60,53 +59,53 @@ export function Sidebar() {
             (pathname === "/" && item.href === "/deposit");
           const Icon = item.icon;
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200",
-                isActive
-                  ? "font-medium text-primary bg-primary/10 border border-primary/20"
-                  : "text-muted-foreground hover:text-foreground hover:bg-sidebar-accent border border-transparent",
-              )}
-            >
-              <Icon size={16} className={isActive ? "text-primary" : ""} />
-              {item.label}
-            </Link>
-          );
-        })}
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200 cursor-pointer",
+                  isActive
+                    ? "font-semibold text-white bg-[#0D9488]"
+                    : "text-slate-400 hover:text-white hover:bg-white/5",
+                )}
+              >
+                <Icon size={18} className={cn(isActive ? "text-white" : "text-slate-400")} />
+                {item.label}
+              </Link>
+            );
+          })}
 
-        <div className="my-4 mx-4 h-px bg-sidebar-border" />
+          <div className="my-6 mx-4 h-px bg-white/10" />
 
-        {/* Secondary Navigation */}
-        {SECONDARY_NAV_ITEMS.map((item) => {
-          const isActive = pathname === item.href;
-          const Icon = item.icon;
+          {/* Secondary Navigation */}
+          {SECONDARY_NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200",
-                isActive
-                  ? "font-medium text-primary bg-primary/10 border border-primary/20"
-                  : "text-muted-foreground hover:text-foreground hover:bg-sidebar-accent border border-transparent",
-              )}
-            >
-              <Icon size={16} className={isActive ? "text-primary" : ""} />
-              {item.label}
-            </Link>
-          );
-        })}
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200 cursor-pointer",
+                  isActive
+                    ? "font-semibold text-white bg-[#0D9488]"
+                    : "text-slate-400 hover:text-white hover:bg-white/5",
+                )}
+              >
+                <Icon size={18} className={cn(isActive ? "text-white" : "text-slate-400")} />
+                {item.label}
+              </Link>
+            );
+          })}
       </nav>
 
       {/* Bottom Actions */}
       <div className="p-4 space-y-4">
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-sidebar-accent transition-all duration-200 w-full"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-sidebar-accent transition-all duration-200 w-full cursor-pointer"
         >
           {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           <span>Theme</span>

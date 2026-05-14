@@ -20,18 +20,18 @@ export default function EcosystemPage() {
 
   return (
     <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 py-12 flex flex-col gap-12">
-      <motion.div 
+      {/* Page Header */}
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col gap-4 items-center text-center max-w-3xl mx-auto"
+        className="flex flex-col gap-2"
       >
-        <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-primary mb-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
-          <Blocks className="h-3 w-3" />
-          ECOSYSTEM
-        </div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">Equivo Ecosystem</h1>
-        <p className="text-xl text-muted-foreground">
-          An overview of apps, protocols, and integrations building the future of tokenized assets on Equivo.
+        <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
+          Equivo Ecosystem
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl">
+          An overview of apps, protocols, and integrations building the future of
+          tokenized assets on Equivo.
         </p>
       </motion.div>
 
@@ -39,7 +39,7 @@ export default function EcosystemPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="flex flex-wrap justify-center gap-2 mb-4"
+        className="flex flex-wrap gap-2 mb-4"
       >
         {FILTERS.map(filter => (
           <button

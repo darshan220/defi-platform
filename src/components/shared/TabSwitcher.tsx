@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface TabSwitcherProps {
@@ -20,17 +19,12 @@ export function TabSwitcher({ tabs, activeTab, onChange, className }: TabSwitche
             key={tab}
             onClick={() => onChange(tab)}
             className={cn(
-              "relative px-4 py-2 text-sm font-medium transition-colors rounded-lg flex-1",
-              isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+              "relative px-4 py-2 text-sm font-medium transition-all rounded-lg flex-1 cursor-pointer",
+              isActive 
+                ? "text-foreground bg-card shadow-sm border border-border/50" 
+                : "text-muted-foreground hover:text-foreground"
             )}
           >
-            {isActive && (
-              <motion.div
-                layoutId="active-tab"
-                className="absolute inset-0 bg-card rounded-lg shadow-sm border border-border/50"
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              />
-            )}
             <span className="relative z-10">{tab}</span>
           </button>
         );
